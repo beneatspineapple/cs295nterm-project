@@ -1,0 +1,55 @@
+﻿@model List<Ride>
+@{
+    ViewData["Title"] = "RideInput";
+}
+
+<div class="text-center jumbotron jumbotron-fluid bg-secondary">
+    <h1 class="display-4">Bike ride leaderboard</h1>
+</div>
+<div class="container">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-md-2">Distance in Miles</th>
+                <th class="col-md-2">Duration(Minutes)</th>
+                <th class="col-md-2">Start Point</th>
+                <th class="col-md-2">End Point</th>
+                <th class="col-md-2">Date of Ride</th>
+                <th class="col-md-2">Date Submitted to Leaderboard</th>
+            </tr>
+        </thead>
+        @if (@Model != null)
+        {
+            foreach (Ride ride in Model)
+            {
+                <tr>
+                    <td class="col-md-2">
+                        <span>
+                            <a asp-controller="RideTracker"
+                       asp-action="Rides"
+                       asp-route-RideId="@ride.RideId">@ride.Distance</a>
+                        </span>
+                    </td>
+                    <td class="col-md-2">
+                        <span>@ride.Duration</span>
+                    </td>
+                    <td class="col-md-2">
+                        <span>@ride.StartPoint</span>
+                    </td>
+                    <td class="col-md-2">
+                        <span>@ride.EndPoint</span>
+                    </td>
+                    <td class="col-md-2">
+                        <span>@ride.RideDate</span>
+                    </td>
+                    <td class="col-md-2">
+                        <span>@ride.DateSubmitted</span>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+<a href="RideTracker/RideInput" class="btn btn-primary">Add new ride</a>
+<br />
+<a href="/Home" class="btn btn-primary">Home</a>

@@ -1,0 +1,32 @@
+﻿@model Ride
+@{
+    ViewData["Title"] = "RideInput";
+}
+<div class="text-center jumbotron jumbotron-fluid bg-info">
+    <h1 class="display-4">Add a ride to the leaderboard</h1>
+</div>
+<form method="post" class="container">
+    <div class="row p-2">
+        <label asp-for="Distance" class="control-label col-md-2">Ride distance in miles:</label>
+        <input asp-for="Distance" class="form-control col-md-4" /><br />
+    </div>
+    <div class="row p-2">
+        <label asp-for="Duration" class="control-label col-md-2">Ride duration:</label>
+        <input asp-for="Duration" class="form-control col-md-4"><br />
+    </div>
+    <div class="row p-2">
+        <label asp-for="StartPoint" class="control-label col-md-2">Ride start point:</label>
+        <input asp-for="StartPoint" class="form-control col-md-4" /><br />
+    </div>
+    <div class="row p-2">
+        <label asp-for="EndPoint" class="control-label col-md-2">Ride end point:</label>
+        <input asp-for="EndPoint" class="form-control col-md-4" /><br />
+    </div>
+    <div class="row p-2">
+        <label asp-for="RideDate" class="control-label col-md-2">Ride date in MM/DD/YYYY format:</label>
+        <input asp-for="RideDate" class="form-control col-md-4" /><br />
+    </div>
+    <div class="row p-4">
+        <button type="submit" class="form-control btn btn-success col-3 rounded-0">Submit</button>
+    </div>
+</form>

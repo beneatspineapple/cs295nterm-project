@@ -1,0 +1,37 @@
+﻿@model Ride
+@{
+    ViewData["Title"] = "Ride";
+}
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead class="table table-dark">
+            <th class="col-md-2">Distance in Miles</th>
+            <th class="col-md-2">Duration(Minutes)</th>
+            <th class="col-md-2">Start Point</th>
+            <th class="col-md-2">End Point</th>
+            <th class="col-md-2">Date of Ride</th>
+            <th class="col-md-2">Date Submitted to Leaderboard</th>
+        </thead>
+        <tr>
+            <td class="col-md-2">
+                <span>@Model.Distance</span>
+            </td>
+            <td class="col-md-2">
+                <span>@Model.Duration</span>
+            </td>
+            <td class="col-md-2">
+                <span>@Model.StartPoint</span>
+            </td>
+            <td class="col-md-2">
+                <span>@Model.EndPoint</span>
+            </td>
+            <td class="col-md-2">
+                <span>@Model.RideDate</span>
+            </td>
+            <td class="col-md-2">
+                <span>@Model.DateSubmitted</span>
+            </td>
+        </tr>
+    </table>
+</div>

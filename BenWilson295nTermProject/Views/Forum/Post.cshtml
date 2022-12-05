@@ -1,0 +1,21 @@
+﻿@model Post
+@{
+    ViewData["Title"] = "Post";
+}
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead class="table table-dark">
+        <th class="col-md-2">Topic</th>
+        <th class="col-md-4">Body</th>
+        <th class="col-md-1">Author</th>
+        <th class="col-md-1">Date</th>
+        </thead>
+        <tr>
+            <td class="col-md-2">@Model.Subject</td>
+            <td class="col-md-4">@Model.Text</td>
+            <td class="col-md-1">@Model.Name</td>
+            <td class="col-md-1">@Model.DatePosted</td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,48 @@
+﻿@model List<Post>
+@{
+    ViewData["Title"] = "Forum";
+}
+
+<div class="text-center jumbotron jumbotron-fluid bg-secondary">
+    <h1 class="display-4">Bicycle Touring Discussion Forum</h1>
+</div>
+<div class="container">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-md-2">Topic</th>
+                <th class="col-md-3">Body</th>
+                <th class="col-md-1">Author</th>
+                <th class="col-md-1">Date</th>
+            </tr>
+        </thead>
+        @if (@Model != null)
+        {
+            foreach (Post post in Model)
+            {
+                <tr>
+                    <td class="col-md-2">
+                        <span>
+                            <a asp-controller="Forum"
+                       asp-action="Post"
+                       asp-route-PostId="@post.PostId">@post.Subject</a>
+                        </span>
+                    </td>
+                    <td class="col-md-3">
+                        <span>@post.Text</span>
+                    </td>
+                    <td>
+                        <span>@post.Name</span>
+                    </td>
+                    <td class="col-md-1">
+                        <span>@post.DatePosted</span>
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+    </div>
+    <a href="Forum/Forum" class="btn btn-primary">Click here to submit a forum post</a>
+    <br />
+    <a href="/Home" class="btn btn-primary">Home</a>
