@@ -3,28 +3,29 @@ using BenWilson295nTermProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BenWilson295nTermProject.Data;
 
 namespace BenWilson295nTermProject.Controllers
 {
     public class RideTrackerController : Controller
     {
-        AppDbContext context;
+        IRideTrackerRepository repo2;
 
-        public RideTrackerController(AppDbContext c)
+        public RideTrackerController(IRideTrackerRepository r)
         {
-            context = c;
+            repo2 = r;
         }
 
         public IActionResult Index()
         {
-            List<Ride> rides = context.Rides.OrderByDescending(ride => ride.DateSubmitted).ToList();
+            List<Ride> rides = repo2.PopulateRides();
 
             return View(rides);
         }
 
         public IActionResult Rides(int RideId)
         {
-            Ride ride = context.Rides.Find(RideId);
+            Ride ride = repo2.GetRideById(RideId);
 
             return View(ride);
         }
@@ -36,11 +37,14 @@ namespace BenWilson295nTermProject.Controllers
         [HttpPost]
         public IActionResult RideInput(Ride model)
         {
-            model.DateSubmitted = DateTime.Now;
-            context.Rides.Add(model);
-            context.SaveChanges();
-
-            return RedirectToAction("Index");
+            if (repo2.StoreRide(model) > 0)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

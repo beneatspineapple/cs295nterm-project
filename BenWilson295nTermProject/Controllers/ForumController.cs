@@ -3,47 +3,49 @@ using BenWilson295nTermProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BenWilson295nTermProject.Data;
 
 namespace BenWilson295nTermProject.Controllers
 {
     public class ForumController : Controller
     {
-        AppDbContext context;
+        IForumRepository repo;
 
-        public ForumController(AppDbContext c)
+        public ForumController(IForumRepository p)
         {
-            context = c;
+            repo = p;
         }
 
         public IActionResult Index()
         {
-            List<Post> posts = context.ForumPosts.OrderByDescending(post => post.DatePosted).ToList();
+            List<Post> posts = repo.PopulateForum();
 
             return View(posts);
         }
         public IActionResult Post(int PostId)
         {
 
-            Post post = context.ForumPosts.Find(PostId);
+            Post post = repo.GetPostById(PostId);
 
             return View(post);
         }
 
         public IActionResult Forum()
         {
-            /*PostModel newPost = new PostModel();
-            return View(newPost);*/
             return View();
         }
 
         [HttpPost]
         public IActionResult Forum(Post model)
         {
-            model.DatePosted = DateTime.Now;
-            context.ForumPosts.Add(model);
-            context.SaveChanges();
-
-            return RedirectToAction("Index");
+            if (repo.StorePost(model) > 0)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }
