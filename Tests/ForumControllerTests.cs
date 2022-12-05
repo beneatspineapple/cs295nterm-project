@@ -16,12 +16,6 @@ namespace Tests
     {
         IForumRepository repo = new FakePostRepository();
         ForumController controller;
-        /*
-        const string URLSTRING = "The String";
-        const string SUBJECT = "The Subject";
-        const string TEXT = "The Text";
-        const string NAME = "The Name";
-        */
 
         public ForumControllerTests()
         {
