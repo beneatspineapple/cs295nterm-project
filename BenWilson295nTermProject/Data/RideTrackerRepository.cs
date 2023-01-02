@@ -24,7 +24,7 @@ namespace BenWilson295nTermProject.Data
         }
         public List<Ride> PopulateRides()
         {
-            return context.Rides.OrderByDescending(ride => ride.Distance).ToList();
+            return context.Rides.OrderByDescending(ride => ride.DateSubmitted).ToList();
         }
         public int StoreRide(Ride model)
         {
