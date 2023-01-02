@@ -1,4 +1,4 @@
-﻿@model List<Post>
+﻿@model Post
 @{
     ViewData["Title"] = "Forum";
 }
@@ -10,39 +10,18 @@
     <table class="table table-bordered">
         <thead class="thead-dark">
             <tr>
-                <th class="col-md-2">Topic</th>
-                <th class="col-md-3">Body</th>
-                <th class="col-md-1">Author</th>
-                <th class="col-md-1">Date</th>
+                <th class="col-md-2">Boards</th>
             </tr>
         </thead>
-        @if (@Model != null)
-        {
-            foreach (Post post in Model)
-            {
-                <tr>
-                    <td class="col-md-2">
-                        <span>
-                            <a asp-controller="Forum"
-                       asp-action="Post"
-                       asp-route-PostId="@post.PostId">@post.Subject</a>
-                        </span>
-                    </td>
-                    <td class="col-md-3">
-                        <span>@post.Text</span>
-                    </td>
-                    <td>
-                        <span>@post.Name</span>
-                    </td>
-                    <td class="col-md-1">
-                        <span>@post.DatePosted</span>
-                    </td>
-                </tr>
-            }
-        }
-
+        <a asp-controller="Forum"
+           asp-action="Boards"
+           asp-route-BoardProperty="@Post.Board.Touring">Touring</a>
+        <a asp-controller="Forum"
+           asp-action="Boards"
+           asp-route-BoardProperty="@Post.Board.Bmx">Bmx</a>
+        <a asp-controller="Forum"
+           asp-action="Boards"
+           asp-route-BoardProperty="@Post.Board.Bikepacking">Bike Packing</a>
     </table>
     </div>
-    <a href="Forum/Forum" class="btn btn-primary">Click here to submit a forum post</a>
-    <br />
     <a href="/Home" class="btn btn-primary">Home</a>

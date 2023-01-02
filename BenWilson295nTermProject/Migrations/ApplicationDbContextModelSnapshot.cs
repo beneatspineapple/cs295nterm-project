@@ -26,6 +26,9 @@ namespace BenWilson295nTermProject.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BoardProperty")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DatePosted")
                         .HasColumnType("datetime2");
 

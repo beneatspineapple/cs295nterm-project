@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BenWilson295nTermProject.Data;
+using AspNetCore;
 
 namespace BenWilson295nTermProject.Controllers
 {
@@ -18,8 +19,14 @@ namespace BenWilson295nTermProject.Controllers
 
         public IActionResult Index()
         {
-            List<Post> posts = repo.PopulateForum();
+            Post post = new Post();
+            return View(post);
+        }
 
+        public IActionResult Boards(Post.Board boardProperty)
+        {
+            List<Post> posts = repo.PopulateForum();
+            posts = posts.Where(post => post.BoardProperty == boardProperty).ToList();
             return View(posts);
         }
         public IActionResult Post(int PostId)
@@ -30,9 +37,11 @@ namespace BenWilson295nTermProject.Controllers
             return View(post);
         }
 
-        public IActionResult Forum()
+        public IActionResult Forum(Post.Board boardProperty)
         {
-            return View();
+            Post post = new Post();
+            post.BoardProperty = boardProperty;
+            return View(post);
         }
 
         [HttpPost]
@@ -44,7 +53,7 @@ namespace BenWilson295nTermProject.Controllers
             }
             else
             {
-                return View();
+                return View(model);
             }
         }
     }
