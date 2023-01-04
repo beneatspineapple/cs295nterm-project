@@ -1,5 +1,4 @@
-﻿@model Post
-@{
+﻿@{
     ViewData["Title"] = "Forum";
 }
 
@@ -15,13 +14,13 @@
         </thead>
         <a asp-controller="Forum"
            asp-action="Boards"
-           asp-route-BoardProperty="@Post.Board.Touring">Touring</a>
+           asp-route-BoardProperty="@BoardOptions.Touring">Touring</a>
         <a asp-controller="Forum"
            asp-action="Boards"
-           asp-route-BoardProperty="@Post.Board.Bmx">Bmx</a>
+           asp-route-BoardProperty="@BoardOptions.Bmx">Bmx</a>
         <a asp-controller="Forum"
            asp-action="Boards"
-           asp-route-BoardProperty="@Post.Board.Bikepacking">Bike Packing</a>
+           asp-route-BoardProperty="@BoardOptions.Bikepacking">Bike Packing</a>
     </table>
     </div>
     <a href="/Home" class="btn btn-primary">Home</a>

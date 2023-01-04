@@ -10,9 +10,22 @@ namespace BenWilson295nTermProject.Data
     public class ForumRepository : IForumRepository
     {
         private AppDbContext context;
+        public List<Post> Posts { get; set; }
+        public List<Board> Boards { get; set; }
         public ForumRepository(AppDbContext appDbContext)
         {
             context = appDbContext;
+            Posts = context.ForumPosts.ToList();
+            Boards = context.Boards.ToList();
+            if (!context.Boards.Any())
+            {
+                Board touring = new Board() { BoardSubject = BoardOptions.Touring };
+                Board bmx = new Board() { BoardSubject = BoardOptions.Bmx };
+                Board bikePacking = new Board() { BoardSubject = BoardOptions.Bikepacking };
+
+                context.Boards.AddRange(touring, bmx, bikePacking);
+                context.SaveChanges();
+            }
         }
 
         public Post GetPostById(int id)
@@ -22,10 +35,17 @@ namespace BenWilson295nTermProject.Data
                 .SingleOrDefault();
             return post;
         }
-        public List<Post> PopulateForum()
+        /*public List<Post> PopulateForum()
         {
             return context.ForumPosts.OrderByDescending(post => post.DatePosted).ToList();
+        }*/
+
+        public int StoreBoard(Board board)
+        {
+            context.Boards.Add(board);
+            return context.SaveChanges();
         }
+
         public int StorePost(Post model)
         {
             model.DatePosted = DateTime.Now;

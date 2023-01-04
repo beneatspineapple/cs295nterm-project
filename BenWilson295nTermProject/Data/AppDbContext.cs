@@ -9,5 +9,6 @@ namespace BenWilson295nTermProject
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
         public DbSet<Post> ForumPosts { get; set; }
         public DbSet<Ride> Rides { get; set; }
+        public DbSet<Board> Boards { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model List<Post>
+﻿@model Board
 @{
     ViewData["Title"] = "Forum";
 }
@@ -16,16 +16,16 @@
                 <th class="col-md-1">Date</th>
             </tr>
         </thead>
-        @if (@Model != null)
+        @if (@Model.BoardPosts != null)
         {
-            foreach (Post post in Model)
+            foreach (Post post in Model.BoardPosts)
             {
                 <tr>
                     <td class="col-md-2">
                         <span>
                             <a asp-controller="Forum"
-                       asp-action="Post"
-                       asp-route-PostId="@post.PostId">@post.Subject</a>
+                            asp-action="Post"
+                            asp-route-PostId="@post.PostId">@post.Subject</a>
                         </span>
                     </td>
                     <td class="col-md-3">
@@ -43,6 +43,6 @@
 
     </table>
 </div>
-<a asp-controller="Forum" asp-action="Forum" asp-route-BoardProperty="@Model[0].BoardProperty" class="btn btn-primary">Click here to submit a forum post</a>
+<a asp-controller="Forum" asp-action="Forum" asp-route-current="@Model.BoardSubject" class="btn btn-primary">Click here to submit a forum post</a>
 <br />
 <a href="/Home" class="btn btn-primary">Home</a>
