@@ -2,6 +2,7 @@
 using BenWilson295nTermProject.Models;
 using System.Linq;
 using BenWilson295nTermProject.Data;
+using System.Collections.Generic;
 
 namespace BenWilson295nTermProject.Controllers
 {
@@ -28,7 +29,7 @@ namespace BenWilson295nTermProject.Controllers
             return View(posts);*/
             Board board = repo.Boards.FirstOrDefault(board => board.BoardSubject == boardProperty) ??
                 new Board() { BoardSubject = boardProperty };
-                return View(board);
+            return View(board);
         }
 
         public IActionResult Post(int PostId)
@@ -40,22 +41,32 @@ namespace BenWilson295nTermProject.Controllers
 
         public IActionResult Forum(BoardOptions boardProperty)
         {
-            Post post = new Post();
-            post.BoardProperty = boardProperty;
+            Post post = new Post()
+            {
+                BoardProperty = boardProperty
+            };
             return View(post);
         }
 
         [HttpPost]
-        public IActionResult Forum(Post model)
+        public IActionResult Forum(Post post)
         {
-            if (repo.StorePost(model) > 0)
+            
+            Board board = repo.Boards.FirstOrDefault(board => board.BoardSubject == post.BoardProperty);
+            if (board == null)
             {
-                return RedirectToAction("Index");
+                board = new Board();
+                board.BoardSubject = post.BoardProperty;
+
+                repo.Boards.Add(board);
             }
-            else
+            if (board.BoardPosts == null)
             {
-                return View(model);
+                board.BoardPosts = new List<Post>();
             }
+            board.BoardPosts.Add(post);
+            repo.UpdateBoard(board);
+            return View("Boards", board);
         }
     }
 }

@@ -4,14 +4,16 @@ using BenWilson295nTermProject;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BenWilson295nTermProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230107024056_hellomynameismigration")]
+    partial class hellomynameismigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,6 +66,27 @@ namespace BenWilson295nTermProject.Migrations
                     b.HasIndex("BoardID");
 
                     b.ToTable("ForumPosts");
+                });
+
+            modelBuilder.Entity("BenWilson295nTermProject.Models.PostReply", b =>
+                {
+                    b.Property<int>("PostReplyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DatePosted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PostReplyId");
+
+                    b.ToTable("PostReplies");
                 });
 
             modelBuilder.Entity("BenWilson295nTermProject.Models.Ride", b =>

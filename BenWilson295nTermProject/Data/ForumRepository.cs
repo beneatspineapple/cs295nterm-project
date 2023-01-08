@@ -48,8 +48,19 @@ namespace BenWilson295nTermProject.Data
 
         public int StorePost(Post model)
         {
-            model.DatePosted = DateTime.Now;
             context.ForumPosts.Add(model);
+            return context.SaveChanges();
+        }
+
+        public int UpdateBoard(Board board)
+        {
+            context.Boards.Update(board);
+            return context.SaveChanges();
+        }
+
+        public int UpdatePost(Post post)
+        {
+            context.ForumPosts.Update(post);
             return context.SaveChanges();
         }
     }

@@ -1,48 +1,53 @@
-﻿@model Board
+﻿<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+@model Board
 @{
     ViewData["Title"] = "Forum";
 }
 
-<div class="text-center jumbotron jumbotron-fluid bg-secondary">
-    <h1 class="display-4">Bicycle Touring Discussion Forum</h1>
+        <div class="container my-3">
+            <div class="row">
+                <div class="col-12 col-xl-9">
+                    <h2 class="h4 category mb-0 p-4 rounded-top text-light">@Model.BoardSubject</h2>
+                    <table class="table table-striped table-bordered table-responsive">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col" class="forum-col">Topic</th>
+                                <th scope="col">Body</th>
+                                <th scope="col">Author</th>
+                                <th scope="col" class="last-post-col">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (@Model.BoardPosts != null)
+                            {
+                                foreach (Post post in Model.BoardPosts)
+                                {
+                                    <tr>
+                                        <td class="col-md-2">
+                                            <span>
+                                                <a asp-controller="Forum"
+                                           asp-action="Post"
+                                           asp-route-PostId="@post.PostId">@post.Subject</a>
+                                            </span>
+                                        </td>
+                                        <td class="col-md-3">
+                                            <span>@post.Text</span>
+                                        </td>
+                                        <td>
+                                            <span>@post.Name</span>
+                                        </td>
+                                        <td class="col-md-1">
+                                            <span>@post.DatePosted</span>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+            <a asp-controller="Forum" asp-action="Forum" asp-route-boardProperty="@Model.BoardSubject" class="btn btn-primary aqws col-md-4 mb-1">Click here to submit a forum post</a>
+                <br />
+            <a href="/Forum/Index" class="btn btn-primary col-md-4 mb-1 aqws">Back</a>
+                <br />
+            </div>
+    </div>
 </div>
-<div class="container">
-    <table class="table table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th class="col-md-2">Topic</th>
-                <th class="col-md-3">Body</th>
-                <th class="col-md-1">Author</th>
-                <th class="col-md-1">Date</th>
-            </tr>
-        </thead>
-        @if (@Model.BoardPosts != null)
-        {
-            foreach (Post post in Model.BoardPosts)
-            {
-                <tr>
-                    <td class="col-md-2">
-                        <span>
-                            <a asp-controller="Forum"
-                            asp-action="Post"
-                            asp-route-PostId="@post.PostId">@post.Subject</a>
-                        </span>
-                    </td>
-                    <td class="col-md-3">
-                        <span>@post.Text</span>
-                    </td>
-                    <td>
-                        <span>@post.Name</span>
-                    </td>
-                    <td class="col-md-1">
-                        <span>@post.DatePosted</span>
-                    </td>
-                </tr>
-            }
-        }
-
-    </table>
-</div>
-<a asp-controller="Forum" asp-action="Forum" asp-route-current="@Model.BoardSubject" class="btn btn-primary">Click here to submit a forum post</a>
-<br />
-<a href="/Home" class="btn btn-primary">Home</a>

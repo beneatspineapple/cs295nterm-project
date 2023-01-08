@@ -10,6 +10,6 @@ namespace BenWilson295nTermProject.Models
         public string Text { get; set; }
         public string Name { get; set; }
         public BoardOptions BoardProperty { get; set; }
-        public DateTime DatePosted { get; set; }
+        public DateTime DatePosted { get; set; } = DateTime.Now;
     }
 }

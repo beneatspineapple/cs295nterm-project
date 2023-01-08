@@ -4,16 +4,14 @@ using BenWilson295nTermProject;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BenWilson295nTermProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221204120134_newtablemigration")]
-    partial class newtablemigration
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,12 +19,33 @@ namespace BenWilson295nTermProject.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("BenWilson295nTermProject.Models.Board", b =>
+                {
+                    b.Property<int>("BoardID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BoardSubject")
+                        .HasColumnType("int");
+
+                    b.HasKey("BoardID");
+
+                    b.ToTable("Boards");
+                });
+
             modelBuilder.Entity("BenWilson295nTermProject.Models.Post", b =>
                 {
                     b.Property<int>("PostId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("BoardID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BoardProperty")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DatePosted")
                         .HasColumnType("datetime2");
@@ -42,7 +61,30 @@ namespace BenWilson295nTermProject.Migrations
 
                     b.HasKey("PostId");
 
+                    b.HasIndex("BoardID");
+
                     b.ToTable("ForumPosts");
+                });
+
+            modelBuilder.Entity("BenWilson295nTermProject.Models.PostReply", b =>
+                {
+                    b.Property<int>("PostReplyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DatePosted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PostReplyId");
+
+                    b.ToTable("PostReplies");
                 });
 
             modelBuilder.Entity("BenWilson295nTermProject.Models.Ride", b =>
@@ -73,6 +115,13 @@ namespace BenWilson295nTermProject.Migrations
                     b.HasKey("RideId");
 
                     b.ToTable("Rides");
+                });
+
+            modelBuilder.Entity("BenWilson295nTermProject.Models.Post", b =>
+                {
+                    b.HasOne("BenWilson295nTermProject.Models.Board", null)
+                        .WithMany("BoardPosts")
+                        .HasForeignKey("BoardID");
                 });
 #pragma warning restore 612, 618
         }

@@ -10,5 +10,6 @@ namespace BenWilson295nTermProject
         public DbSet<Post> ForumPosts { get; set; }
         public DbSet<Ride> Rides { get; set; }
         public DbSet<Board> Boards { get; set; }
+        public DbSet<PostReply> PostReplies { get; set; }
     }
 }

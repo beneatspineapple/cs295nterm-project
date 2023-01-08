@@ -1,11 +1,13 @@
-﻿@model Post
+﻿<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+@model Post
 @{
     ViewData["Title"] = "Forum";
 }
-<div class="text-center jumbotron jumbotron-fluid bg-secondary">
+<div class="container">
+<div class="text-center jumbotron jumbotron-fluid aqws">
     <h1 class="display-4">Leave a Comment</h1>
 </div>
-<form method="post" class="container">
+<form method="post">
     <div class="row p-2">
         <label asp-for="Subject" class="control-label col-md-2">Subject</label>
         <input asp-for="Subject" class="form-control col-md-4" /><br />
@@ -20,7 +22,8 @@
     </div>
     <input asp-for="BoardProperty" hidden />
     <div class="row p-4">
-        <button type="submit" class="form-control btn btn-success col-3 rounded-0">Submit</button>
+        <button type="submit" class="form-control btn aqws col-3 rounded-0">Submit</button>
     </div>
 </form>
+</div>
 
