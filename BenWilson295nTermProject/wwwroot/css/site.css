@@ -90,3 +90,82 @@ body {
 .last-post-col {
     min-width: 192px !important;
 }
+
+.login-form,
+.login-form * {
+    box-sizing: border-box;
+}
+
+.login-form {
+    max-width: 350px;
+    margin: 0 auto;
+    margin-top: 200px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+.login-form__heading {
+    margin-bottom: 15px;
+    text-align: center;
+    color: white;
+    font-size: 2em;
+}
+
+.login-form__content {
+    padding: 30px;
+    background: #45B8FF;
+}
+
+.login-form__header {
+    margin-bottom: 15px;
+    text-align: center;
+    color: #666666;
+}
+
+.login-form__input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #dddddd;
+    background: #ffffff;
+    outline: none;
+    transition: border-color 0.5s;
+}
+
+    .login-form__input:focus {
+        border-color: #45B8FF;
+    }
+
+    .login-form__input::placeholder {
+        color: #aaaaaa;
+    }
+
+.login-form__button {
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    background: #45B8FF;
+    border-color: white;
+    border-radius: 5px;
+    width: 100%;
+    border: solid 1px;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .login-form__button:active {
+        background: #308fc9;
+    }
+
+.login-form__links {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.login-form__link {
+    font-size: 0.9em;
+    color: #666666;
+}

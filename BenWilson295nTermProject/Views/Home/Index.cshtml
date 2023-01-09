@@ -1,14 +1,40 @@
 ﻿<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container-fluid">
-    <div class="text-center jumbotron jumbotron-fluid bg-secondary aqws">
+    <!--<div class="text-center jumbotron jumbotron-fluid bg-white aqws">
         <h1 class="display-4">Welcome to Toasty Bedrolls Touring Forum!</h1>
         <p>A spiritual successor to Warmshowers.org</p>
         </div>
-</div>
+    -->
+<body>
+    <div class="container-fluid">
+    <form class="login-form" action="./" method="post">
+            <div class="login-form__content">
+                <div class="login-form__heading">Welcome to Toasty Bedrolls</div>
+            <div class="login-form__header">Login to your account</div>
+                <input class="login-form__input" type="text" name="username" placeholder="Username" />
+                <input class="login-form__input" type="password" name="password" placeholder="Password" />
+                <button class="login-form__button" type="submit">Login</button>
+                <div class="login-form__links">
+                    <a href="./" class="login-form__link">Forgot your password?</a>
+                </div>
+        </div> 
+    </form>
+    </div>
+</body>
+<style>
+    body {
+        background: #45B8FF;
+    }
+</style>
 
 
+<!-- <style> 
+    body {
+    background: color;
+    margin: 15px;
+    margin-top: 50px;
+    </style>
+    -->
