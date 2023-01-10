@@ -17,7 +17,6 @@ namespace BenWilson295nTermProject.Controllers
 
         public IActionResult Index()
         {
-            /*Post post = new Post();*/
             Board board = new Board();
             return View(board);
         }
