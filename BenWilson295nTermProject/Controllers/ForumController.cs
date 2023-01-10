@@ -24,11 +24,11 @@ namespace BenWilson295nTermProject.Controllers
 
         public IActionResult Boards(BoardOptions boardProperty)
         {
-            /*List<Post> posts = repo.PopulateForum();
-            posts = posts.Where(post => post.BoardProperty == boardProperty).ToList();
-            return View(posts);*/
             Board board = repo.Boards.FirstOrDefault(board => board.BoardSubject == boardProperty) ??
-                new Board() { BoardSubject = boardProperty };
+                new Board() 
+                { 
+                    BoardSubject = boardProperty 
+                };
             return View(board);
         }
 

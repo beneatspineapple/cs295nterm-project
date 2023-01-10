@@ -4,26 +4,26 @@
     ViewData["Title"] = "Forum";
 }
 <div class="container">
-<div class="text-center jumbotron jumbotron-fluid aqws">
-    <h1 class="display-4">Leave a Comment</h1>
-</div>
-<form method="post">
-    <div class="row p-2">
-        <label asp-for="Subject" class="control-label col-md-2">Subject</label>
-        <input asp-for="Subject" class="form-control col-md-4" /><br />
+    <div class="text-center jumbotron jumbotron-fluid aqws">
+        <h1 class="display-4">Leave a Comment</h1>
     </div>
-    <div class="row p-2">
-        <label asp-for="Text" class="control-label col-md-2">Text</label>
-        <textarea asp-for="Text" class="form-control col-md-4"></textarea><br />
-    </div>
-    <div class="row p-2">
-        <label asp-for="Name" class="control-label col-md-2">Name</label>
-        <input asp-for="Name" class="form-control col-md-4" /><br />
-    </div>
-    <input asp-for="BoardProperty" hidden />
-    <div class="row p-4">
-        <button type="submit" class="form-control btn aqws col-3 rounded-0">Submit</button>
-    </div>
-</form>
+    <form method="post">
+        <div class="row p-2">
+            <label asp-for="Subject" class="control-label col-md-2">Subject</label>
+            <input asp-for="Subject" class="form-control col-md-4" /><br />
+        </div>
+        <div class="row p-2">
+            <label asp-for="Text" class="control-label col-md-2">Text</label>
+            <textarea asp-for="Text" class="form-control col-md-4"></textarea><br />
+        </div>
+        <div class="row p-2">
+            <label asp-for="Name" class="control-label col-md-2">Name</label>
+            <input asp-for="Name" class="form-control col-md-4" /><br />
+        </div>
+        <input asp-for="BoardProperty" hidden />
+        <div class="row p-4">
+            <button type="submit" class="form-control btn aqws col-3 rounded-0">Submit</button>
+        </div>
+    </form>
 </div>
 

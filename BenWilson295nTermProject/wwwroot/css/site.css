@@ -135,7 +135,7 @@ body {
 }
 
     .login-form__input:focus {
-        border-color: #45B8FF;
+        border-color: #308fc9;
     }
 
     .login-form__input::placeholder {

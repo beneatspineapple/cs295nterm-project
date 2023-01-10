@@ -19,9 +19,16 @@ namespace BenWilson295nTermProject.Data
             Boards = context.Boards.ToList();
             if (!context.Boards.Any())
             {
-                Board touring = new Board() { BoardSubject = BoardOptions.Touring };
-                Board bmx = new Board() { BoardSubject = BoardOptions.Bmx };
-                Board bikePacking = new Board() { BoardSubject = BoardOptions.Bikepacking };
+                Board touring = new Board() 
+                { 
+                    BoardSubject = BoardOptions.Touring 
+                };
+                Board bmx = new Board() { 
+                    BoardSubject = BoardOptions.Bmx 
+                };
+                Board bikePacking = new Board() { 
+                    BoardSubject = BoardOptions.Bikepacking 
+                };
 
                 context.Boards.AddRange(touring, bmx, bikePacking);
                 context.SaveChanges();
@@ -35,10 +42,6 @@ namespace BenWilson295nTermProject.Data
                 .SingleOrDefault();
             return post;
         }
-        /*public List<Post> PopulateForum()
-        {
-            return context.ForumPosts.OrderByDescending(post => post.DatePosted).ToList();
-        }*/
 
         public int StoreBoard(Board board)
         {
